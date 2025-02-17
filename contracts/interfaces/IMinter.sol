@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {IAero} from "./IAero.sol";
+import {IGob} from "./IGob.sol";
 import {IVoter} from "./IVoter.sol";
 import {IVotingEscrow} from "./IVotingEscrow.sol";
 import {IRewardsDistributor} from "./IRewardsDistributor.sol";
@@ -35,7 +35,7 @@ interface IMinter {
     event AcceptTeam(address indexed _newTeam);
 
     /// @notice Interface of Aero.sol
-    function aero() external view returns (IAero);
+    function gob() external view returns (IGob);
 
     /// @notice Interface of Voter.sol
     function voter() external view returns (IVoter);

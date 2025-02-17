@@ -62,10 +62,10 @@ contract DeployCore is Base {
         // start broadcasting transactions
         vm.startBroadcast(deployerAddress);
 
-        // deploy AERO
-        AERO = new Aero();
+        // deploy GOB
+        GOB = new GoblinV2();
 
-        tokens.push(address(AERO));
+        tokens.push(address(GOB));
     }
 
     function _deploySetupAfter() public {
@@ -89,7 +89,7 @@ contract DeployCore is Base {
         vm.stopBroadcast();
 
         // write to file
-        vm.writeJson(vm.serializeAddress("v2", "AERO", address(AERO)), path);
+        vm.writeJson(vm.serializeAddress("v2", "GOB", address(GOB)), path);
         vm.writeJson(vm.serializeAddress("v2", "VotingEscrow", address(escrow)), path);
         vm.writeJson(vm.serializeAddress("v2", "Forwarder", address(forwarder)), path);
         vm.writeJson(vm.serializeAddress("v2", "ArtProxy", address(artProxy)), path);

@@ -19,7 +19,7 @@ contract DistributeAirdrops is Script {
     string public path;
 
     AirdropDistributor public airdrop;
-    Aero public AERO;
+    GoblinV2 public GOB;
 
     struct AirdropInfo {
         uint256 amount;
@@ -33,7 +33,7 @@ contract DistributeAirdrops is Script {
         path = string.concat(path, outputFilename);
         jsonConstants = vm.readFile(path);
 
-        AERO = Aero(abi.decode(jsonConstants.parseRaw(".AERO"), (address)));
+        GOB = GoblinV2(abi.decode(jsonConstants.parseRaw(".GOB"), (address)));
         airdrop = AirdropDistributor(abi.decode(jsonConstants.parseRaw(".AirdropDistributor"), (address)));
 
         path = string.concat(basePath, airdropFilename);
@@ -51,7 +51,7 @@ contract DistributeAirdrops is Script {
         for (uint256 i = 0; i < walletsLength; i++) {
             sum += amounts[i];
         }
-        uint256 aeroBal = AERO.balanceOf(address(airdrop));
+        uint256 aeroBal = GOB.balanceOf(address(airdrop));
         if (sum > aeroBal) amounts[0] = amounts[0] - (sum - aeroBal); // remove dust from first airdrop if needed
 
         path = string.concat(basePath, "output/AirdropDistribution-");

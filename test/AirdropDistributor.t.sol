@@ -27,7 +27,7 @@ contract AirdropDistributorTest is BaseTest {
         _amounts[0] = INITIAL_DISTRIBUTOR_BALANCE;
 
         // Mints tokens to Airdrop Distributor
-        assertEq(AERO.balanceOf(address(airdrop)), 0);
+        assertEq(GOB.balanceOf(address(airdrop)), 0);
         vm.prank(minter.team());
         minter.initialize(
             IMinter.AirdropParams({
@@ -42,13 +42,13 @@ contract AirdropDistributorTest is BaseTest {
     function testAirdropDistributorDeployment() public {
         assertEq(airdrop.owner(), address(owner));
         assertEq(address(airdrop.ve()), address(escrow));
-        assertEq(address(airdrop.aero()), address(AERO));
-        assertEq(AERO.balanceOf(address(airdrop)), INITIAL_DISTRIBUTOR_BALANCE);
+        assertEq(address(airdrop.gob()), address(GOB));
+        assertEq(GOB.balanceOf(address(airdrop)), INITIAL_DISTRIBUTOR_BALANCE);
         assertEq(escrow.balanceOf(address(airdrop)), 0);
     }
 
     function testAirdropDistributor() public {
-        uint256 preAeroBal = AERO.balanceOf(address(airdrop));
+        uint256 preAeroBal = GOB.balanceOf(address(airdrop));
 
         (address[] memory _wallets, uint256[] memory _amounts) = _getWalletsAmounts(N_TEST_WALLETS, TOKEN_10K);
         uint256 _len = _wallets.length;
@@ -57,7 +57,7 @@ contract AirdropDistributorTest is BaseTest {
         for (uint256 i = 0; i < _len; i++) {
             sum += _amounts[i];
         }
-        assertGe(AERO.balanceOf(address(airdrop)), sum);
+        assertGe(GOB.balanceOf(address(airdrop)), sum);
 
         // Expects emission of all events from the Airdrop
         for (uint256 i = 0; i < _len; i++) {
@@ -67,7 +67,7 @@ contract AirdropDistributorTest is BaseTest {
         // Airdrops tokens
         vm.prank(address(owner));
         airdrop.distributeTokens(_wallets, _amounts);
-        uint256 newAeroBal = AERO.balanceOf(address(airdrop));
+        uint256 newAeroBal = GOB.balanceOf(address(airdrop));
 
         // Asserts Distributor's token balances
         assertEq(preAeroBal - sum, newAeroBal);
@@ -111,11 +111,11 @@ contract AirdropDistributorTest is BaseTest {
         for (uint256 i = 0; i < _len; i++) {
             sum += _amounts[i];
         }
-        stdstore.target(address(AERO)).sig("balanceOf(address)").with_key(address(airdrop)).checked_write(sum - 1);
+        stdstore.target(address(GOB)).sig("balanceOf(address)").with_key(address(airdrop)).checked_write(sum - 1);
 
         vm.expectRevert(IAirdropDistributor.InsufficientBalance.selector);
         airdrop.distributeTokens(_wallets, _amounts);
-        assertEq(AERO.balanceOf(address(airdrop)), sum - 1);
+        assertEq(GOB.balanceOf(address(airdrop)), sum - 1);
     }
 
     function _getWalletsAmounts(

@@ -16,7 +16,7 @@ contract VeArtProxyTest is BaseTest {
     function _setUp() public override {
         // create tokenId
         skipAndRoll(1 hours);
-        AERO.approve(address(escrow), TOKEN_1);
+        GOB.approve(address(escrow), TOKEN_1);
         tokenId = escrow.createLock(TOKEN_1, MAXTIME);
     }
 

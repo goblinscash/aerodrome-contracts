@@ -8,12 +8,12 @@ contract ProtocolGovernorTest is BaseTest {
     event ProposalVetoed(uint256 proposalId);
 
     function _setUp() public override {
-        AERO.approve(address(escrow), 97 * TOKEN_1);
+        GOB.approve(address(escrow), 97 * TOKEN_1);
         escrow.createLock(97 * TOKEN_1, MAXTIME); // 1
 
         // owner2 owns less than quorum, 3%
         vm.startPrank(address(owner2));
-        AERO.approve(address(escrow), 3 * TOKEN_1);
+        GOB.approve(address(escrow), 3 * TOKEN_1);
         escrow.createLock(3 * TOKEN_1, MAXTIME); // 2
         vm.stopPrank();
         skipAndRoll(1);
@@ -233,10 +233,10 @@ contract ProtocolGovernorTest is BaseTest {
     }
 
     function testProposalHasQuorumWithDelegatedVotes() public {
-        AERO.approve(address(escrow), TOKEN_1);
+        GOB.approve(address(escrow), TOKEN_1);
         escrow.createLock(TOKEN_1, MAXTIME); // 3
         vm.startPrank(address(owner3));
-        AERO.approve(address(escrow), TOKEN_1 * 100);
+        GOB.approve(address(escrow), TOKEN_1 * 100);
         escrow.createLock(TOKEN_1 * 100, MAXTIME); // 4
         escrow.lockPermanent(4);
         escrow.delegate(4, 3);

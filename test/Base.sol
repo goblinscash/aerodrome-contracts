@@ -18,7 +18,7 @@ import {PoolFees} from "contracts/PoolFees.sol";
 import {RewardsDistributor, IRewardsDistributor} from "contracts/RewardsDistributor.sol";
 import {IAirdropDistributor, AirdropDistributor} from "contracts/AirdropDistributor.sol";
 import {IRouter, Router} from "contracts/Router.sol";
-import {IAero, Aero} from "contracts/Aero.sol";
+import {IGob, GoblinV2} from "contracts/GoblinV2.sol";
 import {IVoter, Voter} from "contracts/Voter.sol";
 import {VeArtProxy} from "contracts/VeArtProxy.sol";
 import {IVotingEscrow, VotingEscrow} from "contracts/VotingEscrow.sol";
@@ -46,7 +46,7 @@ abstract contract Base is Script, Test {
     Deployment deploymentType;
 
     IWETH public WETH;
-    Aero public AERO;
+    GoblinV2 public GOB;
     address[] public tokens;
 
     /// @dev Core Deployment
@@ -76,7 +76,7 @@ abstract contract Base is Script, Test {
 
         forwarder = new Forwarder();
 
-        escrow = new VotingEscrow(address(forwarder), address(AERO), address(factoryRegistry));
+        escrow = new VotingEscrow(address(forwarder), address(GOB), address(factoryRegistry));
         artProxy = new VeArtProxy(address(escrow));
         escrow.setArtProxy(address(artProxy));
 
@@ -99,7 +99,7 @@ abstract contract Base is Script, Test {
         // Setup minter
         minter = new Minter(address(voter), address(escrow), address(distributor));
         distributor.setMinter(address(minter));
-        AERO.setMinter(address(minter));
+        GOB.setMinter(address(minter));
 
         airdrop = new AirdropDistributor(address(escrow));
 

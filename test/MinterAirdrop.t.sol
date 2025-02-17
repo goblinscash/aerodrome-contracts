@@ -27,7 +27,7 @@ contract MinterAirdrop is BaseTest {
             WALLET_NUMBER,
             TOKEN_100K
         );
-        uint256 preAeroBal = AERO.balanceOf(address(this));
+        uint256 preAeroBal = GOB.balanceOf(address(this));
 
         // Expects all events from the airdrop
         uint256 liquidLen = liquidWallets.length;
@@ -54,7 +54,7 @@ contract MinterAirdrop is BaseTest {
         assertTrue(minter.initialized());
         // Ensures Liquid Tokens were minted correctly
         for (uint256 i = 0; i < liquidLen; i++) {
-            assertEq(AERO.balanceOf(liquidWallets[i]), liquidAmounts[i]);
+            assertEq(GOB.balanceOf(liquidWallets[i]), liquidAmounts[i]);
         }
         // Ensures permanently locked NFTs were distributed correctly
         for (uint256 i = 0; i < lockedLen; i++) {
@@ -66,13 +66,13 @@ contract MinterAirdrop is BaseTest {
             assertEq(locked.end, 0);
         }
         // Minter balance remains unchanged
-        assertEq(AERO.balanceOf(address(this)), preAeroBal);
+        assertEq(GOB.balanceOf(address(this)), preAeroBal);
         assertEq(escrow.balanceOf(address(this)), 0);
     }
 
     function testInitializeAeroAirdrop() public {
         (address[] memory wallets, uint256[] memory amounts) = _getWalletsAmounts(WALLET_NUMBER, TOKEN_1M);
-        uint256 preAeroBal = AERO.balanceOf(address(this));
+        uint256 preAeroBal = GOB.balanceOf(address(this));
 
         uint256 len = wallets.length;
         // Expects all events to be emitted
@@ -94,16 +94,16 @@ contract MinterAirdrop is BaseTest {
         assertTrue(minter.initialized());
         // Ensures tokens were minted correctly
         for (uint256 i = 0; i < len; i++) {
-            assertEq(AERO.balanceOf(wallets[i]), amounts[i]);
+            assertEq(GOB.balanceOf(wallets[i]), amounts[i]);
         }
         // Minter balance remains unchanged
-        assertEq(AERO.balanceOf(address(this)), preAeroBal);
+        assertEq(GOB.balanceOf(address(this)), preAeroBal);
         assertEq(escrow.balanceOf(address(this)), 0);
     }
 
     function testInitializeVeAirdrop() public {
         (address[] memory wallets, uint256[] memory amounts) = _getWalletsAmounts(WALLET_NUMBER, TOKEN_100K);
-        uint256 preAeroBal = AERO.balanceOf(address(this));
+        uint256 preAeroBal = GOB.balanceOf(address(this));
 
         uint256 len = wallets.length;
         // Expects all events to be emitted
@@ -134,7 +134,7 @@ contract MinterAirdrop is BaseTest {
             assertEq(locked.end, 0);
         }
         // Minter balance remains unchanged
-        assertEq(AERO.balanceOf(address(this)), preAeroBal);
+        assertEq(GOB.balanceOf(address(this)), preAeroBal);
         assertEq(escrow.balanceOf(address(this)), 0);
     }
 
