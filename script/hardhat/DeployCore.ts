@@ -48,7 +48,7 @@ interface AirdropInfo {
 async function main() {
   // ====== start _deploySetupBefore() ======
   const ONE = "1000000000000000000";
-  const AIRDROPPER_BALANCE = 200_000_000;
+  const AIRDROPPER_BALANCE = 37_000;
   const DECIMAL = BigNumber.from(10).pow(18);
 
   const AERO = await deploy<Aero>("Aero");
