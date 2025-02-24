@@ -33,7 +33,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithZeroTotalSupply() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -86,7 +86,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithMultipleStaggeredRewardsInOneEpoch() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -129,7 +129,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardMoreThanOncePerEpochWithSingleReward() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -172,7 +172,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardMoreThanOncePerEpochWithMultipleRewards() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -215,7 +215,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithMultipleVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -260,7 +260,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithVotesForDifferentPoolsAcrossEpochs() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -316,7 +316,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithPassiveVote() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward in epoch 0
         vm.startPrank(address(gauge));
@@ -374,7 +374,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithPassiveVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -486,7 +486,7 @@ contract FeesVotingRewardTest is BaseTest {
 
     function testCannotGetRewardInSameWeekIfEpochYetToFlip() public {
         /// tests that rewards deposited that week cannot be claimed until next week
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create reward in epoch 0
         vm.startPrank(address(gauge));
@@ -532,7 +532,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleVoteAndPoke() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -593,7 +593,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpoint() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -632,7 +632,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpointWithOtherVoter() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -673,7 +673,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpointWithOtherStaggeredVoter() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a reward
         vm.startPrank(address(gauge));
@@ -721,7 +721,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSkippedClaims() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1; // epoch 0 reward
         uint256 reward2 = TOKEN_1 * 2; // epoch1 reward
@@ -813,7 +813,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotClaimRewardForPoolIfPokedButVotedForOtherPool() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -896,7 +896,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithAlternatingVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -974,7 +974,7 @@ contract FeesVotingRewardTest is BaseTest {
 
     // same test as above but with some initial checkpoints in place
     function testGetRewardWithAlternatingVotesWithInitialCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1061,7 +1061,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotClaimRewardForPoolIfPokedButReset() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1117,7 +1117,7 @@ contract FeesVotingRewardTest is BaseTest {
 
     function testGetRewardWithVoteThenPoke() public {
         /// tests poking makes no difference to voting outcome
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1173,7 +1173,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithVotesForMultiplePools() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1238,7 +1238,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardForNewPoolVotedAfterEpochFlip() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1293,7 +1293,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardInSameEpochAsVote() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1378,14 +1378,14 @@ contract FeesVotingRewardTest is BaseTest {
         voter.vote(1, pools, weights);
         vm.prank(address(owner2));
 
-        ts = bound(ts, 0, 1 weeks - (1 hours) - 2);
+        ts = bound(ts, 0, 1 days - (1 hours) - 2);
         skipAndRoll(ts);
 
         assertEq(feesVotingReward.earned(address(FRAX), 1), 0);
     }
 
     function testCannotGetRewardIfNotVoterOrOwnerOrApproved() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
 
@@ -1414,7 +1414,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithVoteAndNotifyRewardInDifferentOrders() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1479,7 +1479,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testDepositAndWithdrawCreatesCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 numSupply = feesVotingReward.supplyNumCheckpoints();
         assertEq(numSupply, 0); // no existing checkpoints
@@ -1530,7 +1530,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testDepositAndWithdrawWithinSameEpochOverwritesCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // test vote and poke overwrites checkpoints
         // deposit by voting
@@ -1621,7 +1621,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testDepositFromManyUsersInSameTimestampOverwritesSupplyCheckpoint() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // deposit by voting
         address[] memory pools = new address[](1);
@@ -1662,7 +1662,7 @@ contract FeesVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSeparateRewardClaims() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a FRAX reward
         vm.startPrank(address(gauge));
@@ -1735,20 +1735,20 @@ contract FeesVotingRewardTest is BaseTest {
         vm.startPrank(address(gauge));
         FRAX.approve(address(feesVotingReward), TOKEN_1);
         vm.expectEmit(true, true, true, true, address(feesVotingReward));
-        emit NotifyReward(address(gauge), address(FRAX), 604800, TOKEN_1);
+        emit NotifyReward(address(gauge), address(FRAX), 86400, TOKEN_1);
         feesVotingReward.notifyRewardAmount(address(FRAX), TOKEN_1);
 
-        assertEq(feesVotingReward.tokenRewardsPerEpoch(address(FRAX), 604800), TOKEN_1);
+        assertEq(feesVotingReward.tokenRewardsPerEpoch(address(FRAX), 86400), TOKEN_1);
         assertEq(FRAX.balanceOf(address(feesVotingReward)), TOKEN_1);
 
         skip(1 hours);
 
         FRAX.approve(address(feesVotingReward), TOKEN_1 * 2);
         vm.expectEmit(true, true, true, true, address(feesVotingReward));
-        emit NotifyReward(address(gauge), address(FRAX), 604800, TOKEN_1 * 2);
+        emit NotifyReward(address(gauge), address(FRAX), 86400, TOKEN_1 * 2);
         feesVotingReward.notifyRewardAmount(address(FRAX), TOKEN_1 * 2);
 
-        assertEq(feesVotingReward.tokenRewardsPerEpoch(address(FRAX), 604800), TOKEN_1 * 3);
+        assertEq(feesVotingReward.tokenRewardsPerEpoch(address(FRAX), 86400), TOKEN_1 * 3);
         assertEq(FRAX.balanceOf(address(feesVotingReward)), TOKEN_1 * 3);
     }
 }

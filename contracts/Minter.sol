@@ -24,8 +24,9 @@ contract Minter is IMinter {
     /// @inheritdoc IMinter
     IRewardsDistributor public immutable rewardsDistributor;
 
-    /// @inheritdoc IMinter
-    uint256 public constant WEEK = 1 weeks;
+    // /// @inheritdoc IMinter
+    // uint256 public constant WEEK = 1 weeks;
+    uint256 public constant WEEK = 1 days;
     /// @inheritdoc IMinter
     uint256 public constant WEEKLY_DECAY = 9_900; // 0.99  => 9900/10000
     /// @inheritdoc IMinter
@@ -39,7 +40,7 @@ contract Minter is IMinter {
     /// @inheritdoc IMinter
     uint256 public constant NUDGE = 1;
     /// @inheritdoc IMinter
-    uint256 public constant TAIL_START = 890 * 1e18;
+    uint256 public constant TAIL_START = 290 * 1e18;
     /// @inheritdoc IMinter
     uint256 public tailEmissionRate = 67;
     /// @inheritdoc IMinter
@@ -47,7 +48,7 @@ contract Minter is IMinter {
     /// @inheritdoc IMinter
     uint256 public teamRate = 1000; // team emissions start at 10%
     /// @inheritdoc IMinter
-    uint256 public weekly = 1000 * 1e18;
+    uint256 public weekly = 370 * 1e18;
     /// @inheritdoc IMinter
     uint256 public activePeriod;
     /// @inheritdoc IMinter

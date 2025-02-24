@@ -46,12 +46,12 @@ contract FreeManagedRewardTest is BaseTest {
         LR.approve(address(freeManagedReward), TOKEN_1);
         uint256 pre = LR.balanceOf(address(owner));
         vm.expectEmit(true, true, true, true, address(freeManagedReward));
-        emit NotifyReward(address(owner), address(LR), 604800, TOKEN_1);
+        emit NotifyReward(address(owner), address(LR), 86400, TOKEN_1);
         freeManagedReward.notifyRewardAmount(address(LR), TOKEN_1);
         uint256 post = LR.balanceOf(address(owner));
 
         assertEq(freeManagedReward.isReward(address(LR)), true);
-        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(LR), 604800), TOKEN_1);
+        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(LR), 86400), TOKEN_1);
         assertEq(pre - post, TOKEN_1);
         assertEq(LR.balanceOf(address(freeManagedReward)), TOKEN_1);
 
@@ -60,17 +60,17 @@ contract FreeManagedRewardTest is BaseTest {
         LR.approve(address(freeManagedReward), TOKEN_1 * 2);
         pre = LR.balanceOf(address(owner));
         vm.expectEmit(true, true, true, true, address(freeManagedReward));
-        emit NotifyReward(address(owner), address(LR), 604800, TOKEN_1 * 2);
+        emit NotifyReward(address(owner), address(LR), 86400, TOKEN_1 * 2);
         freeManagedReward.notifyRewardAmount(address(LR), TOKEN_1 * 2);
         post = LR.balanceOf(address(owner));
 
-        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(LR), 604800), TOKEN_1 * 3);
+        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(LR), 86400), TOKEN_1 * 3);
         assertEq(pre - post, TOKEN_1 * 2);
         assertEq(LR.balanceOf(address(freeManagedReward)), TOKEN_1 * 3);
     }
 
     function testCannotGetRewardIfNotOwnerOrApproved() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
 
@@ -92,7 +92,7 @@ contract FreeManagedRewardTest is BaseTest {
     }
 
     function testGetReward() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
 

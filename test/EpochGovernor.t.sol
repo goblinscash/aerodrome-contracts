@@ -139,7 +139,7 @@ contract EpochGovernorTest is BaseTest {
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Active));
         assertEq(epochGovernor.hasVoted(pid, 4), false);
 
-        skipAndRoll(1 weeks);
+        skipAndRoll(1 days);
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Succeeded));
 
         // execute
@@ -198,7 +198,7 @@ contract EpochGovernorTest is BaseTest {
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Active));
         assertEq(epochGovernor.hasVoted(pid, 4), false);
 
-        skipAndRoll(1 weeks);
+        skipAndRoll(1 days);
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Defeated));
 
         // execute
@@ -258,7 +258,7 @@ contract EpochGovernorTest is BaseTest {
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Active));
         assertEq(epochGovernor.hasVoted(pid, 1), false);
 
-        skipAndRoll(1 weeks);
+        skipAndRoll(1 days);
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Expired));
 
         // execute
@@ -325,7 +325,7 @@ contract EpochGovernorTest is BaseTest {
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Active));
         assertEq(epochGovernor.hasVoted(pid, 4), false);
 
-        skipAndRoll(1 weeks);
+        skipAndRoll(1 days);
         assertEq(uint256(epochGovernor.state(pid)), uint256(IGovernor.ProposalState.Succeeded));
 
         // execute

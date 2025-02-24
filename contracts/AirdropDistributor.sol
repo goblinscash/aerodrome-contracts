@@ -36,7 +36,8 @@ contract AirdropDistributor is IAirdropDistributor, Ownable {
         for (uint256 i = 0; i < _len; i++) {
             _wallet = _wallets[i];
             _amount = _amounts[i];
-            _tokenId = ve.createLock(_amount, 1 weeks);
+            // _tokenId = ve.createLock(_amount, 1 weeks);
+            _tokenId = ve.createLock(_amount, 1 days);
             ve.lockPermanent(_tokenId);
             ve.safeTransferFrom(address(this), _wallet, _tokenId);
             emit Airdrop(_wallet, _amount, _tokenId);

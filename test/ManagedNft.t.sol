@@ -85,7 +85,7 @@ contract ManagedNftTest is BaseTest {
         uint256 tokenId = escrow.createLock(TOKEN_1, MAXTIME);
         assertEq(escrow.locked(tokenId).end, 126403200);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.expectRevert(IVotingEscrow.NotVoter.selector);
         escrow.depositManaged(tokenId, mTokenId);
     }
@@ -543,10 +543,10 @@ contract ManagedNftTest is BaseTest {
 
     function testCannotDepositManagedWithExpiredNft() public {
         GOB.approve(address(escrow), type(uint256).max);
-        uint256 tokenId = escrow.createLock(TOKEN_1, 1 weeks);
+        uint256 tokenId = escrow.createLock(TOKEN_1, 1 days);
         uint256 mTokenId = escrow.createManagedLockFor(address(owner));
 
-        skip(2 weeks + 1 hours + 1);
+        skip(2 days + 1 hours + 1);
 
         vm.expectRevert(IVotingEscrow.ZeroBalance.selector);
         voter.depositManaged(tokenId, mTokenId);
@@ -729,7 +729,7 @@ contract ManagedNftTest is BaseTest {
         voter.depositManaged(tokenId, mTokenId);
         uint256 supply = escrow.supply();
 
-        skipAndRoll(2 weeks);
+        skipAndRoll(2 days);
         vm.expectEmit(true, true, true, true, address(escrow));
         emit WithdrawManaged(address(owner), tokenId, mTokenId, TOKEN_1, 1818001);
         vm.expectEmit(false, false, false, true, address(escrow));
@@ -740,7 +740,7 @@ contract ManagedNftTest is BaseTest {
 
         /// on withdraw, re-lock for max-lock time rounded down by week
         // start time: 126403200
-        // lock time = start time + two epochs = 126403200 + 604800 * 2 = 127612800
+        // lock time = start time + two epochs = 126403200 + 86400 * 2 = 127612800
         locked = escrow.locked(tokenId);
         assertEq(uint256(uint128(locked.amount)), TOKEN_1);
         assertEq(locked.end, 127612800);
@@ -844,9 +844,9 @@ contract ManagedNftTest is BaseTest {
 
         assertEq(escrow.supply(), TOKEN_1 * 2);
         assertEq(GOB.balanceOf(address(lockedManagedReward)), TOKEN_1);
-        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 604800), TOKEN_1);
+        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 86400), TOKEN_1);
 
-        skipAndRoll(2 weeks);
+        skipAndRoll(2 days);
         vm.expectEmit(true, true, true, true, address(escrow));
         emit WithdrawManaged(address(owner), tokenId, mTokenId, TOKEN_1 * 2, 1818001);
         vm.expectEmit(false, false, false, true, address(escrow));
@@ -857,7 +857,7 @@ contract ManagedNftTest is BaseTest {
 
         /// on withdraw, re-lock for max-lock time rounded down by week
         // start time: 126403200
-        // lock time = start time + two epochs = 126403200 + 604800 * 2 = 127612800
+        // lock time = start time + two epochs = 126403200 + 86400 * 2 = 127612800
         locked = escrow.locked(tokenId);
         assertEq(uint256(uint128(locked.amount)), TOKEN_1 * 2);
         assertEq(locked.end, 127612800);
@@ -942,9 +942,9 @@ contract ManagedNftTest is BaseTest {
 
         assertEq(escrow.supply(), supply);
         assertEq(GOB.balanceOf(address(freeManagedReward)), TOKEN_1);
-        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(GOB), 604800), TOKEN_1);
+        assertEq(freeManagedReward.tokenRewardsPerEpoch(address(GOB), 86400), TOKEN_1);
 
-        skipAndRoll(2 weeks);
+        skipAndRoll(2 days);
         vm.expectEmit(true, true, true, true, address(escrow));
         emit WithdrawManaged(address(owner), tokenId, mTokenId, TOKEN_1, 1818001);
         vm.expectEmit(false, false, false, true, address(escrow));
@@ -955,7 +955,7 @@ contract ManagedNftTest is BaseTest {
 
         /// on withdraw, re-lock for max-lock time rounded down by week
         // start time: 126403200
-        // lock time = start time + two epochs = 126403200 + 604800 * 2 = 127612800
+        // lock time = start time + two epochs = 126403200 + 86400 * 2 = 127612800
         locked = escrow.locked(tokenId);
         assertEq(uint256(uint128(locked.amount)), TOKEN_1);
         assertEq(locked.end, 127612800);
@@ -1072,9 +1072,9 @@ contract ManagedNftTest is BaseTest {
 
         assertEq(escrow.supply(), TOKEN_1 * 3);
         assertEq(GOB.balanceOf(address(lockedManagedReward)), TOKEN_1);
-        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 604800), TOKEN_1);
+        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 86400), TOKEN_1);
 
-        skipAndRoll(2 weeks);
+        skipAndRoll(2 days);
         vm.expectEmit(true, false, false, false, address(escrow));
         emit WithdrawManaged(address(owner), tokenId, mTokenId, TOKEN_1, 1818001);
         voter.withdrawManaged(tokenId);
@@ -1083,7 +1083,7 @@ contract ManagedNftTest is BaseTest {
 
         /// on withdraw, re-lock for max-lock time rounded down by week
         // start time: 126403200
-        // lock time = start time + two epochs = 126403200 + 604800 * 2 = 127612800
+        // lock time = start time + two epochs = 126403200 + 86400 * 2 = 127612800
         locked = escrow.locked(tokenId);
         assertEq(uint256(uint128(locked.amount)), TOKEN_1 * 2);
         assertEq(locked.end, 127612800);
@@ -1197,14 +1197,14 @@ contract ManagedNftTest is BaseTest {
 
     function testCannotWithdrawLockedVeNft() public {
         skipAndRoll(1 hours);
-        // lock for four weeks
+        // lock for four days
         GOB.approve(address(escrow), type(uint256).max);
         uint256 tokenId = escrow.createLock(TOKEN_1, 4 * 7 * 86400);
 
         uint256 mTokenId = escrow.createManagedLockFor(address(owner));
         voter.depositManaged(tokenId, mTokenId);
 
-        skip(8 weeks);
+        skip(8 days);
 
         vm.expectRevert(IVotingEscrow.NotNormalNFT.selector);
         escrow.withdraw(tokenId);
@@ -1297,7 +1297,7 @@ contract ManagedNftTest is BaseTest {
         uint256 mTokenId = escrow.createManagedLockFor(address(owner));
         voter.depositManaged(tokenId, mTokenId);
 
-        skip(400 weeks);
+        skip(400 days);
 
         vm.expectRevert(IVotingEscrow.NotNormalNFT.selector);
         escrow.withdraw(mTokenId);

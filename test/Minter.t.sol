@@ -77,7 +77,7 @@ contract MinterTest is BaseTest {
         assertApproxEqAbs(minter.weekly(), 15_125_897 * TOKEN_1, TOKEN_1);
         assertEq(minter.epochCount(), 14);
 
-        //emissions grow for 14 weeks
+        //emissions grow for 14 days
         //in week 15, weekly emission flips and decays
 
         //epoch 15
@@ -299,13 +299,13 @@ contract MinterTest is BaseTest {
         assertEq(post - pre, (10 * TOKEN_1M * 103) / 100);
         assertEq(minter.weekly(), (10 * TOKEN_1M * 103 * 103) / 100 / 100);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.roll(block.number + 1);
         minter.updatePeriod();
 
         distributor.claim(1);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.roll(block.number + 1);
         minter.updatePeriod();
 
@@ -313,17 +313,17 @@ contract MinterTest is BaseTest {
         tokenIds[0] = 1;
         distributor.claimMany(tokenIds);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.roll(block.number + 1);
         minter.updatePeriod();
         distributor.claim(1);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.roll(block.number + 1);
         minter.updatePeriod();
         distributor.claimMany(tokenIds);
 
-        skip(1 weeks);
+        skip(1 days);
         vm.roll(block.number + 1);
         minter.updatePeriod();
         distributor.claim(1);

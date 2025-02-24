@@ -29,6 +29,7 @@ contract EpochGovernor is GovernorSimple, GovernorCountingMajority, GovernorSimp
     }
 
     function votingPeriod() public pure override(IGovernor) returns (uint256) {
-        return (1 weeks);
+        // return (1 weeks);
+        return (1 days);
     }
 }

@@ -23,10 +23,13 @@ abstract contract BaseTest is Base, TestOwner {
     uint256 constant TOKEN_10B = 1e28; // 1e10 = 10B tokens with 18 decimals
     uint256 constant POOL_1 = 1e9;
 
-    uint256 constant DURATION = 7 days;
-    uint256 constant WEEK = 1 weeks;
+    // uint256 constant DURATION = 7 days;
+    // uint256 constant WEEK = 1 weeks;
+    uint256 constant DURATION = 1 days;
+    uint256 constant WEEK = 1 days;
     /// @dev Use same value as in voting escrow
-    uint256 constant MAXTIME = 4 * 365 * 86400;
+    // uint256 constant MAXTIME = 4 * 365 * 86400;
+    uint256 constant MAXTIME = 7 * 86400;
     uint256 constant MAX_BPS = 10_000;
     address constant ETHER = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
@@ -95,7 +98,9 @@ abstract contract BaseTest is Base, TestOwner {
 
     function _testSetupBefore() public {
         // seed set up with initial time
-        skip(1 weeks);
+        // skip(1 weeks);
+        skip(1 days);
+
 
         deployOwners();
         deployCoins();
@@ -281,7 +286,8 @@ abstract contract BaseTest is Base, TestOwner {
     ///      passed into the new epoch
     function skipToNextEpoch(uint256 offset) public {
         uint256 ts = block.timestamp;
-        uint256 nextEpoch = ts - (ts % (1 weeks)) + (1 weeks);
+        // uint256 nextEpoch = ts - (ts % (1 weeks)) + (1 weeks);
+        uint256 nextEpoch = ts - (ts % (1 days)) + (1 days);
         vm.warp(nextEpoch + offset);
         vm.roll(block.number + 1);
     }

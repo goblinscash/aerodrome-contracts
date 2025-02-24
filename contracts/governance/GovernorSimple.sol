@@ -289,7 +289,8 @@ abstract contract GovernorSimple is ERC2771Context, ERC165, EIP712, IGovernor, I
         require(calldatas.length == 1, "GovernorSimple: only one calldata allowed");
         require(bytes4(calldatas[0]) == IMinter.nudge.selector, "GovernorSimple: only nudge allowed");
 
-        bytes32 epochStart = bytes32(ProtocolTimeLibrary.epochStart(block.timestamp) + (1 weeks));
+        // bytes32 epochStart = bytes32(ProtocolTimeLibrary.epochStart(block.timestamp) + (1 weeks));
+        bytes32 epochStart = bytes32(ProtocolTimeLibrary.epochStart(block.timestamp) + (1 days));
         uint256 proposalId = hashProposal(targets, values, calldatas, epochStart);
 
         require(targets.length > 0, "GovernorSimple: empty proposal");

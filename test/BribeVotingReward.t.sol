@@ -22,7 +22,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithZeroTotalSupply() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -70,7 +70,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithMultipleStaggeredRewardsInOneEpoch() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -109,7 +109,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardMoreThanOncePerEpochWithSingleReward() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -150,7 +150,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardMoreThanOncePerEpochWithMultipleRewards() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -191,7 +191,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardIfNotVoterOrOwnerOrApproved() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
 
@@ -218,7 +218,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithMultipleVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -259,7 +259,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithVotesForDifferentPoolsAcrossEpochs() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -311,7 +311,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithPassiveVote() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe in epoch 0
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -365,7 +365,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithPassiveVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -465,7 +465,7 @@ contract BribeVotingRewardTest is BaseTest {
 
     function testCannotGetRewardInSameWeekIfEpochYetToFlip() public {
         /// tests that rewards deposited that week cannot be claimed until next week
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create bribe in epoch 0
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -507,7 +507,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleVoteAndPoke() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1;
         uint256 reward2 = TOKEN_1 * 2;
@@ -564,7 +564,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpoint() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -601,7 +601,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpointWithOtherVoter() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -640,7 +640,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSingleCheckpointWithOtherStaggeredVoter() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -686,7 +686,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSkippedClaims() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 reward = TOKEN_1; // epoch 0 reward
         uint256 reward2 = TOKEN_1 * 2; // epoch1 reward
@@ -772,7 +772,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotClaimRewardForPoolIfPokedButVotedForOtherPool() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -849,7 +849,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithAlternatingVotes() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -920,7 +920,7 @@ contract BribeVotingRewardTest is BaseTest {
 
     // same test as above but with some initial checkpoints in place
     function testGetRewardWithAlternatingVotesWithInitialCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1001,7 +1001,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotClaimRewardForPoolIfPokedButReset() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1053,7 +1053,7 @@ contract BribeVotingRewardTest is BaseTest {
 
     function testGetRewardWithVoteThenPoke() public {
         /// tests poking makes no difference to voting outcome
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1105,7 +1105,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithVotesForMultiplePools() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1166,7 +1166,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardForNewPoolVotedAfterEpochFlip() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1217,7 +1217,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testCannotGetRewardInSameEpochAsVote() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1296,14 +1296,14 @@ contract BribeVotingRewardTest is BaseTest {
         voter.vote(1, pools, weights);
         vm.prank(address(owner2));
 
-        ts = bound(ts, 0, 1 weeks - (1 hours) - 2);
+        ts = bound(ts, 0, 1 days - (1 hours) - 2);
         skipAndRoll(ts);
 
         assertEq(bribeVotingReward.earned(address(LR), 1), 0);
     }
 
     function testGetRewardWithVoteAndNotifyRewardInDifferentOrders() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // rewards
         address[] memory rewards = new address[](1);
@@ -1364,7 +1364,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testDepositAndWithdrawCreatesCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 numSupply = bribeVotingReward.supplyNumCheckpoints();
         assertEq(numSupply, 0); // no existing checkpoints
@@ -1415,7 +1415,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testDepositAndWithdrawWithinSameEpochOverwritesCheckpoints() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // test vote and poke overwrites checkpoints
         // deposit by voting
@@ -1506,7 +1506,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testDepositFromManyUsersInSameTimestampOverwritesSupplyCheckpoint() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // deposit by voting
         address[] memory pools = new address[](1);
@@ -1547,7 +1547,7 @@ contract BribeVotingRewardTest is BaseTest {
     }
 
     function testGetRewardWithSeparateRewardClaims() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // create a LR bribe
         LR.approve(address(bribeVotingReward), TOKEN_1);
@@ -1617,12 +1617,12 @@ contract BribeVotingRewardTest is BaseTest {
         LR.approve(address(bribeVotingReward), TOKEN_1);
         uint256 pre = LR.balanceOf(address(owner));
         vm.expectEmit(true, true, true, true, address(bribeVotingReward));
-        emit NotifyReward(address(owner), address(LR), 604800, TOKEN_1);
+        emit NotifyReward(address(owner), address(LR), 86400, TOKEN_1);
         bribeVotingReward.notifyRewardAmount(address(LR), TOKEN_1);
         uint256 post = LR.balanceOf(address(owner));
 
         assertEq(bribeVotingReward.isReward(address(LR)), true);
-        assertEq(bribeVotingReward.tokenRewardsPerEpoch(address(LR), 604800), TOKEN_1);
+        assertEq(bribeVotingReward.tokenRewardsPerEpoch(address(LR), 86400), TOKEN_1);
         assertEq(pre - post, TOKEN_1);
         assertEq(LR.balanceOf(address(bribeVotingReward)), TOKEN_1);
 
@@ -1631,11 +1631,11 @@ contract BribeVotingRewardTest is BaseTest {
         LR.approve(address(bribeVotingReward), TOKEN_1 * 2);
         pre = LR.balanceOf(address(owner));
         vm.expectEmit(true, true, true, true, address(bribeVotingReward));
-        emit NotifyReward(address(owner), address(LR), 604800, TOKEN_1 * 2);
+        emit NotifyReward(address(owner), address(LR), 86400, TOKEN_1 * 2);
         bribeVotingReward.notifyRewardAmount(address(LR), TOKEN_1 * 2);
         post = LR.balanceOf(address(owner));
 
-        assertEq(bribeVotingReward.tokenRewardsPerEpoch(address(LR), 604800), TOKEN_1 * 3);
+        assertEq(bribeVotingReward.tokenRewardsPerEpoch(address(LR), 86400), TOKEN_1 * 3);
         assertEq(pre - post, TOKEN_1 * 2);
         assertEq(LR.balanceOf(address(bribeVotingReward)), TOKEN_1 * 3);
     }

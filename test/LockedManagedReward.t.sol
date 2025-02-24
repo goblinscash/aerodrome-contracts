@@ -57,12 +57,12 @@ contract LockedManagedRewardTest is BaseTest {
         uint256 pre = GOB.balanceOf(address(escrow));
         vm.prank(address(escrow));
         vm.expectEmit(true, true, true, true, address(lockedManagedReward));
-        emit NotifyReward(address(escrow), address(GOB), 604800, TOKEN_1);
+        emit NotifyReward(address(escrow), address(GOB), 86400, TOKEN_1);
         lockedManagedReward.notifyRewardAmount(address(GOB), TOKEN_1);
         uint256 post = GOB.balanceOf(address(escrow));
 
         assertEq(lockedManagedReward.isReward(address(GOB)), true);
-        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 604800), TOKEN_1);
+        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 86400), TOKEN_1);
         assertEq(pre - post, TOKEN_1);
         assertEq(GOB.balanceOf(address(lockedManagedReward)), TOKEN_1);
 
@@ -73,17 +73,17 @@ contract LockedManagedRewardTest is BaseTest {
         pre = GOB.balanceOf(address(escrow));
         vm.prank(address(escrow));
         vm.expectEmit(true, true, true, true, address(lockedManagedReward));
-        emit NotifyReward(address(escrow), address(GOB), 604800, TOKEN_1 * 2);
+        emit NotifyReward(address(escrow), address(GOB), 86400, TOKEN_1 * 2);
         lockedManagedReward.notifyRewardAmount(address(GOB), TOKEN_1 * 2);
         post = GOB.balanceOf(address(escrow));
 
-        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 604800), TOKEN_1 * 3);
+        assertEq(lockedManagedReward.tokenRewardsPerEpoch(address(GOB), 86400), TOKEN_1 * 3);
         assertEq(pre - post, TOKEN_1 * 2);
         assertEq(GOB.balanceOf(address(lockedManagedReward)), TOKEN_1 * 3);
     }
 
     function testCannotGetRewardIfNotSingleToken() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         voter.depositManaged(1, mTokenId);
         _addLockedReward(TOKEN_1);
@@ -100,7 +100,7 @@ contract LockedManagedRewardTest is BaseTest {
     }
 
     function testCannotGetRewardIfNotEscrowToken() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         address token = address(new MockERC20("TEST", "TEST", 18));
         address[] memory rewards = new address[](1);
@@ -112,7 +112,7 @@ contract LockedManagedRewardTest is BaseTest {
     }
 
     function testCannotGetRewardIfNotVotingEscrow() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         voter.depositManaged(1, mTokenId);
         _addLockedReward(TOKEN_1);
@@ -128,7 +128,7 @@ contract LockedManagedRewardTest is BaseTest {
     }
 
     function testGetReward() public {
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         uint256 pre = convert(escrow.locked(1).amount);
         voter.depositManaged(1, mTokenId);

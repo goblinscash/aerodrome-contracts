@@ -217,7 +217,7 @@ contract GaugeTest is BaseTest {
         uint256 reward = TOKEN_1;
         _addRewardToGauge(address(voter), address(gauge), reward);
 
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         assertApproxEqRel(gauge.earned(address(owner)), reward / 4, 1e6);
         assertApproxEqRel(gauge.earned(address(owner2)), reward / 4, 1e6);
@@ -228,7 +228,7 @@ contract GaugeTest is BaseTest {
 
         assertApproxEqRel(post - pre, reward / 4, 1e6);
 
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         assertApproxEqRel(gauge.earned(address(owner)), reward / 4, 1e6);
         assertApproxEqRel(gauge.earned(address(owner2)), reward / 2, 1e6);
@@ -262,7 +262,7 @@ contract GaugeTest is BaseTest {
         uint256 reward = TOKEN_1;
         _addRewardToGauge(address(voter), address(gauge), reward);
 
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         assertApproxEqRel(gauge.earned(address(owner)), reward / 4, 1e6);
         assertApproxEqRel(gauge.earned(address(owner2)), reward / 4, 1e6);
@@ -276,7 +276,7 @@ contract GaugeTest is BaseTest {
         // owner withdraws early after claiming
         gauge.withdraw(POOL_1);
 
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // reward / 2 left to be disbursed to owner2 over the remainder of the week
         assertApproxEqRel(gauge.earned(address(owner)), 0, 1e6);
@@ -401,7 +401,7 @@ contract GaugeTest is BaseTest {
         vm.prank(address(owner2));
         gauge.deposit(POOL_1);
 
-        skip(1 weeks / 2);
+        skip(1 days / 2);
 
         // reward added late in epoch
         uint256 reward = TOKEN_1;
