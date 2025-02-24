@@ -17,7 +17,7 @@ contract DeployGaugesAndPools is Script {
 
     PoolFactory public factory;
     Voter public voter;
-    address public AERO;
+    address public GOB;
 
     struct PoolNonAero {
         bool stable;
@@ -50,11 +50,11 @@ contract DeployGaugesAndPools is Script {
         jsonOutput = vm.readFile(path);
         factory = PoolFactory(abi.decode(jsonOutput.parseRaw(".PoolFactory"), (address)));
         voter = Voter(abi.decode(jsonOutput.parseRaw(".Voter"), (address)));
-        AERO = abi.decode(jsonOutput.parseRaw(".AERO"), (address));
+        GOB = abi.decode(jsonOutput.parseRaw(".GOB"), (address));
 
         vm.startBroadcast(deployerAddress);
 
-        // Deploy all non-AERO pools & gauges
+        // Deploy all non-GOB pools & gauges
         for (uint256 i = 0; i < _pools.length; i++) {
             address newPool = factory.createPool(_pools[i].tokenA, _pools[i].tokenB, _pools[i].stable);
             address newGauge = voter.createGauge(address(factory), newPool);
@@ -63,9 +63,9 @@ contract DeployGaugesAndPools is Script {
             gauges.push(newGauge);
         }
 
-        // Deploy all AERO pools & gauges
+        // Deploy all GOB pools & gauges
         for (uint256 i = 0; i < poolsAero.length; i++) {
-            address newPool = factory.createPool(AERO, poolsAero[i].token, poolsAero[i].stable);
+            address newPool = factory.createPool(GOB, poolsAero[i].token, poolsAero[i].stable);
             address newGauge = voter.createGauge(address(factory), newPool);
 
             pools.push(newPool);

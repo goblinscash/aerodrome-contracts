@@ -12,8 +12,8 @@ contract DistributeAirdrops is Script {
     address public deployerAddress = vm.rememberKey(deployPrivateKey);
     string public airdropFilename = vm.envString("AIRDROPS_FILENAME");
     string public outputFilename = vm.envString("OUTPUT_FILENAME");
-    uint256 public WALLET_BATCH_SIZE = 50;
-    uint256 public MAX_AIRDROPS = 500;
+    uint256 public WALLET_BATCH_SIZE = 1;
+    uint256 public MAX_AIRDROPS = 1;
     string public jsonConstants;
     string public basePath;
     string public path;

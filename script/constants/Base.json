@@ -5,9 +5,34 @@
     "team": "0x2B2CdFe0d55576fF0cE2F834277A54340B6aA391",
     "WETH": "0x4200000000000000000000000000000000000006",
     "whitelistTokens": [
+        "0x0a3bAc370a60061A5939c72D5165f94FBed18A76", 
+        "0xc7CFD173944b435405c7196DDca63aC08ae39720",
+        "0xcC6fD7010a5476c154e70De6AFA57377b52ebD68",
+        "0x8B56D59cd9b1Ce5dd1Fb2A4e3cA7FBE3043Be42F"
     ],
-    "pools": [],
-    "poolsAero": [],
+    "pools": [
+        {
+            "stable": false,
+            "tokenA": "0x8B56D59cd9b1Ce5dd1Fb2A4e3cA7FBE3043Be42F",
+            "tokenB": "0x0a3bAc370a60061A5939c72D5165f94FBed18A76"
+        },
+        {
+            "stable": false,
+            "tokenA": "0x8B56D59cd9b1Ce5dd1Fb2A4e3cA7FBE3043Be42F",
+            "tokenB": "0x0a3bAc370a60061A5939c72D5165f94FBed18A76"
+        },
+        {
+            "stable": true,
+            "tokenA": "0xc7CFD173944b435405c7196DDca63aC08ae39720",
+            "tokenB": "0x8B56D59cd9b1Ce5dd1Fb2A4e3cA7FBE3043Be42F"
+        }
+    ],
+    "poolsAero": [
+        {
+            "stable": false,
+            "token": "0x5196038Ca4E108F79497c2692dd3D5F2237436D0"
+        }
+    ],
     "minter": {
         "liquid": [],
         "locked": []
