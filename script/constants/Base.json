@@ -34,7 +34,12 @@
         }
     ],
     "minter": {
-        "liquid": [],
+        "liquid": [
+            {
+                "amount": 37000000000000000000000,
+                "wallet": "0x715227720ef5cdDDe3176dA245Adce250cDe6e8D"
+            }
+        ],
         "locked": []
     }
 }
