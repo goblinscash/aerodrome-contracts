@@ -33,7 +33,9 @@ contract Voter is IVoter, ERC2771Context, ReentrancyGuard {
     /// @notice Base token of ve contract
     address internal immutable rewardToken;
     /// @notice Rewards are released over 7 days
-    uint256 internal constant DURATION = 7 days;
+    // uint256 internal constant DURATION = 7 days;
+    uint256 internal constant DURATION = 1 days;
+    
     /// @inheritdoc IVoter
     address public minter;
     /// @inheritdoc IVoter
