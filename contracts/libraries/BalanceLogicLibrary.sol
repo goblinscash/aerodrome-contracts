@@ -9,7 +9,7 @@ library BalanceLogicLibrary {
     using SafeCastLibrary for int128;
 
     // uint256 internal constant WEEK = 1 weeks;
-    uint256 internal constant WEEK = 1 days;
+    uint256 internal constant WEEK = 1 hours;
 
 
     /// @notice Binary search to get the user point index for a token id at or prior to a given timestamp

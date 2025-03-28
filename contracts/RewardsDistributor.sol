@@ -18,7 +18,7 @@ contract RewardsDistributor is IRewardsDistributor {
     using SafeERC20 for IERC20;
     /// @inheritdoc IRewardsDistributor
     // uint256 public constant WEEK = 7 * 86400;
-    uint256 public constant WEEK = 86400;
+    uint256 public constant WEEK = 3600;
 
     /// @inheritdoc IRewardsDistributor
     uint256 public startTime;

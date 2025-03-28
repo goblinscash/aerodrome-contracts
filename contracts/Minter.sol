@@ -26,7 +26,7 @@ contract Minter is IMinter {
 
     // /// @inheritdoc IMinter
     // uint256 public constant WEEK = 1 weeks;
-    uint256 public constant WEEK = 1 days;
+    uint256 public constant WEEK = 1 hours;
     /// @inheritdoc IMinter
     uint256 public constant WEEKLY_DECAY = 9_900; // 0.99  => 9900/10000
     /// @inheritdoc IMinter

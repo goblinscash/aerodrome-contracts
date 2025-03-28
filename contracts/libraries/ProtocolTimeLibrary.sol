@@ -3,7 +3,7 @@ pragma solidity 0.8.19;
 
 library ProtocolTimeLibrary {
     // uint256 internal constant WEEK = 7 days;
-    uint256 internal constant WEEK = 1 days;
+    uint256 internal constant WEEK = 1 hours;
 
 
     /// @dev Returns start of epoch based on current timestamp
@@ -23,14 +23,14 @@ library ProtocolTimeLibrary {
     /// @dev Returns start of voting window
     function epochVoteStart(uint256 timestamp) internal pure returns (uint256) {
         unchecked {
-            return timestamp - (timestamp % WEEK) + 1 hours;
+            return timestamp - (timestamp % WEEK) + 10 minutes;
         }
     }
 
     /// @dev Returns end of voting window / beginning of unrestricted voting window
     function epochVoteEnd(uint256 timestamp) internal pure returns (uint256) {
         unchecked {
-            return timestamp - (timestamp % WEEK) + WEEK - 1 hours;
+            return timestamp - (timestamp % WEEK) + WEEK - 10 minutes;
         }
     }
 }

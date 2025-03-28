@@ -51,7 +51,7 @@ contract ProtocolGovernor is
 
     function votingPeriod() public pure override(IVetoGovernor) returns (uint256) {
         // return (1 weeks);
-        return (1 days);
+        return (1 hours);
 
     }
 
