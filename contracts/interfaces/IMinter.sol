@@ -34,7 +34,7 @@ interface IMinter {
     event DistributeLiquid(address indexed _destination, uint256 _amount);
     event AcceptTeam(address indexed _newTeam);
 
-    /// @notice Interface of Aero.sol
+    /// @notice Interface of GOB
     function gob() external view returns (IGob);
 
     /// @notice Interface of Voter.sol
@@ -79,7 +79,7 @@ interface IMinter {
     /// @notice Tail emissions rate in basis points
     function tailEmissionRate() external view returns (uint256);
 
-    /// @notice Starting weekly emission of 10M AERO (AERO has 18 decimals)
+    /// @notice Starting weekly emission GOB (GOB has 18 decimals)
     function weekly() external view returns (uint256);
 
     /// @notice Timestamp of start of epoch that updatePeriod was last called in
