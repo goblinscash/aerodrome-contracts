@@ -3,30 +3,16 @@
     "feeManager": "0xF883857151F4Ab915f86f1e7cF45b7fEe41B8052",
     "emergencyCouncil": "0xF883857151F4Ab915f86f1e7cF45b7fEe41B8052",
     "team": "0xF883857151F4Ab915f86f1e7cF45b7fEe41B8052",
-    "WETH": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+    "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", 
     "whitelistTokens": [
-        "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd", 
-        "0x502826daEFE93Cc2B2C0D1b500335A9a0338e854",
-        "0xB1E2813Ab2a84802dd2cEbcFD07e38ad8a67C11a",
-        "0xF25F7A449D809358C1b4d001648837409aC5e1Ee"
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "0x205f59C72385C82b2328FC1c7776640C8d10f836",
+        "0x767Dc7981a5d58539814110dEA8dd88857164fa1",
+        "0x55d398326f99059fF775485246999027B3197955",
+        "0x53b6a051dD3193d4F80c1E66c56316af180755F6",
+        "0x4fAd9b2458634B1E5D679732ca3f6C203e565B13"
     ],
-    "pools": [
-        {
-            "stable": false,
-            "tokenA": "0x502826daEFE93Cc2B2C0D1b500335A9a0338e854",
-            "tokenB": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
-        },
-        {
-            "stable": false,
-            "tokenA": "0xB1E2813Ab2a84802dd2cEbcFD07e38ad8a67C11a",
-            "tokenB": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
-        },
-        {
-            "stable": true,
-            "tokenA": "0xF25F7A449D809358C1b4d001648837409aC5e1Ee",
-            "tokenB": "0xB1E2813Ab2a84802dd2cEbcFD07e38ad8a67C11a"
-        }
-    ],
+    "pools": [],
     "poolsAero": [],
     "minter": {
         "liquid": [
