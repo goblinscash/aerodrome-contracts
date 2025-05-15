@@ -1,0 +1,52 @@
+{
+    "allowedManager": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1", // safe account
+    "feeManager": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
+    "emergencyCouncil": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
+    "team": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
+    "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    "whitelistTokens": [
+        "0x205f59C72385C82b2328FC1c7776640C8d10f836", // gob v1
+        "0x767Dc7981a5d58539814110dEA8dd88857164fa1", // bch
+        "0xa44319D6232afEAa21A38b040Ca095110ad76d38", // usdt
+        "0x53b6a051dD3193d4F80c1E66c56316af180755F6", // usdc
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // wbnb
+        "0x4fAd9b2458634B1E5D679732ca3f6C203e565B13"  // eth
+    ],
+    "pools": [
+        {
+            "stable": false, // bch-usdt
+            "tokenA": "0x767Dc7981a5d58539814110dEA8dd88857164fa1",
+            "tokenB": "0xa44319D6232afEAa21A38b040Ca095110ad76d38"
+        },
+        {
+            "stable": false, // bch-wbnb
+            "tokenA": "0x767Dc7981a5d58539814110dEA8dd88857164fa1",
+            "tokenB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+        },
+        {
+            "stable": true, // usdt-usdc
+            "tokenA": "0xa44319D6232afEAa21A38b040Ca095110ad76d38",
+            "tokenB": "0x53b6a051dD3193d4F80c1E66c56316af180755F6"
+        }
+    ],
+    "poolsAero": [
+        {
+            "stable": false,
+            "token": "0x205f59C72385C82b2328FC1c7776640C8d10f836" // gob v1
+        },
+        {
+            "stable": false,
+            "token": "0x767Dc7981a5d58539814110dEA8dd88857164fa1" // bch
+        },
+        {
+            "stable": false,
+            "token": "0xa44319D6232afEAa21A38b040Ca095110ad76d38" // usdt
+        }
+    ],
+    "minter": {
+        "liquid": [
+        ],
+        "locked": [
+        ]
+    }
+}

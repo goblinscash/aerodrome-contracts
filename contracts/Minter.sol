@@ -60,6 +60,9 @@ contract Minter is IMinter {
     address public pendingTeam;
     /// @inheritdoc IMinter
     bool public initialized;
+    bool public isPaused;
+
+    event SetPauseState(bool state);
 
     constructor(
         address _voter, // the voting & distribution system
@@ -107,6 +110,12 @@ contract Minter is IMinter {
             emit DistributeLocked(params.lockedWallets[i], params.lockedAmounts[i], _tokenId);
         }
         gob.safeApprove(address(ve), 0);
+    }
+
+    function setPauseState(bool _state) external {
+        if (msg.sender != team) revert("Invalid team wallet");
+        isPaused = _state;
+        emit SetPauseState(_state);
     }
 
     /// @inheritdoc IMinter
@@ -164,6 +173,7 @@ contract Minter is IMinter {
 
     /// @inheritdoc IMinter
     function updatePeriod() external returns (uint256 _period) {
+        require(!isPaused, "Team pause this function");
         _period = activePeriod;
         if (block.timestamp >= _period + WEEK) {
             epochCount++;

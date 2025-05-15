@@ -14,7 +14,7 @@ contract GoblinV2 is IGob, ERC20Permit {
     address public minter;
     address private owner;
 
-    constructor() ERC20("GoblinV2", "GOB") ERC20Permit("GoblinV2") {
+    constructor() ERC20("GoblinV2", "GOBV2") ERC20Permit("GoblinV2") {
 
         minter = msg.sender;
         owner = msg.sender;
