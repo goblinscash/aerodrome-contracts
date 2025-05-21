@@ -319,4 +319,54 @@ contract ProtocolGovernorTest is BaseTest {
 
         assertFalse(pid == pid2);
     }
+
+    function testProposeAndExecuteChangeVetoer() public {
+        // 1. Setup Initial State & Define Multisig EOA
+        assertEq(governor.vetoer(), address(owner), "Initial vetoer should be owner");
+        address newVetoerMultisig = address(owner2);
+
+        // 2. Encode Calldata for `setVetoer`
+        address[] memory targets = new address[](1);
+        targets[0] = address(governor);
+        uint256[] memory values = new uint256[](1);
+        values[0] = 0;
+        bytes[] memory calldatas = new bytes[](1);
+        calldatas[0] = abi.encodeWithSelector(ProtocolGovernor.setVetoer.selector, newVetoerMultisig);
+        string memory description = "Change vetoer to newVetoerMultisig";
+
+        // 3. Propose the Change (owner has tokenId 1 from _setUp)
+        uint256 proposalId = governor.propose(1, targets, values, calldatas, description);
+
+        // 4. Advance Time for Voting
+        skipAndRoll(governor.votingDelay() + 1);
+        assertEq(uint256(governor.state(proposalId)), uint256(IVetoGovernor.ProposalState.Active), "Proposal should be active");
+
+        // 5. Cast Vote (owner has tokenId 1)
+        // Check if owner has enough votes (quorum check is implicitly handled by proposal succeeding)
+        // uint256 proposalSnapshot = governor.proposalSnapshot(proposalId);
+        // assertGt(escrow.getVotes(address(owner), 1, proposalSnapshot), governor.quorum(proposalSnapshot), "Owner votes should be above quorum");
+        governor.castVote(proposalId, 1, 1); // 1 for 'For' vote
+
+        // 6. Advance Time for Execution
+        skipAndRoll(governor.votingPeriod() + 1);
+        assertEq(uint256(governor.state(proposalId)), uint256(IVetoGovernor.ProposalState.Succeeded), "Proposal should have succeeded");
+
+        // 7. Execute Proposal
+        bytes32 descriptionHash = keccak256(bytes(description));
+        governor.execute(targets, values, calldatas, descriptionHash);
+        assertEq(uint256(governor.state(proposalId)), uint256(IVetoGovernor.ProposalState.Executed), "Proposal should be executed");
+
+        // 8. Verify `pendingVetoer`
+        assertEq(governor.pendingVetoer(), newVetoerMultisig, "Pending vetoer should be newVetoerMultisig");
+
+        // 9. Simulate Multisig Acceptance
+        vm.startPrank(newVetoerMultisig);
+        governor.acceptVetoer();
+        vm.stopPrank();
+
+        // 10. Verify New `vetoer`
+        assertEq(governor.vetoer(), newVetoerMultisig, "Final vetoer should be newVetoerMultisig");
+        assertEq(governor.pendingVetoer(), address(0), "Pending vetoer should be cleared");
+    }
+}
 }
