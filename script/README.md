@@ -26,23 +26,23 @@ source .env
 
 1. Deploy the Protocol Core
 ```
-forge script script/DeployCore.s.sol:DeployCore --broadcast --slow --rpc-url base --verify -vvvv
+forge script script/DeployCore.s.sol:DeployCore --broadcast --slow --rpc-url bsc --verify -vvvv
 ```
 2. Accept pending team as team. This needs to be done by the `minter.pendingTeam()` address. Within the deployed `Minter` contract call `acceptTeam()`.
 
 3. Deploy gauges and pools.  These gauges are built on the Protocol using the newly created pools.
 ```
-forge script script/DeployGaugesAndPools.s.sol:DeployGaugesAndPools --broadcast --slow --rpc-url base --verify -vvvv
+forge script script/DeployGaugesAndPools.s.sol:DeployGaugesAndPools --broadcast --slow --rpc-url bsc --verify -vvvv
 ```
 
 4. Distribute locked NFTs using the AirdropDistributor. This needs to be done by the `airdrop.owner()` address.
 ```
-forge script script/DistributeAirdrops.s.sol:DistributeAirdrops --broadcast --slow --gas-estimate-multiplier 200 --legacy --rpc-url base --verify -vvvv
+forge script script/DistributeAirdrops.s.sol:DistributeAirdrops --broadcast --slow --gas-estimate-multiplier 200 --legacy --rpc-url bsc --verify -vvvv
 ```
 
 5. Deploy governor contracts
 ```
-forge script script/DeployGovernors.s.sol:DeployGovernors --broadcast --slow --rpc-url base --verify -vvvv
+forge script script/DeployGovernors.s.sol:DeployGovernors --broadcast --slow --rpc-url bsc --verify -vvvv
 ```
 6.  Update the governor addresses.  This needs to be done by the `escrow.team()` address.  Within `voter`:
  - call `setEpochGovernor()` using the `EpochGovernor` address located in `script/constants/output/{OUTPUT_FILENAME}`
