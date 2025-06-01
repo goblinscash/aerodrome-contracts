@@ -1,52 +1,53 @@
 {
-    "allowedManager": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1", // safe account
-    "feeManager": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
-    "emergencyCouncil": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
-    "team": "0x7853A6D5f4c6797700F77f0c2Ed21C4C84D63ba1",
-    "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    "allowedManager": "0xa32da65DF7492D05814FacC7be9f5049A826b507", // safe account
+    "feeManager": "0xa32da65DF7492D05814FacC7be9f5049A826b507", // safe account
+    "emergencyCouncil": "0xa32da65DF7492D05814FacC7be9f5049A826b507", // safe account
+    "team": "0xa32da65DF7492D05814FacC7be9f5049A826b507", // safe account
+    "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // WBNB
     "whitelistTokens": [
-        "0x701ACA29AE0F5d24555f1E8A6Cf007541291d110", // gob v1
-        "0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf", // bch
-        "0x55d398326f99059fF775485246999027B3197955", // usdt
-        "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d", // usdc
-        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // wbnb
-        "0x2170Ed0880ac9A755fd29B2688956BD959F933F8"  // eth
+        "0x701ACA29AE0F5d24555f1E8A6Cf007541291d110", // GOB v1
+        "0x55d398326f99059fF775485246999027B3197955", // USDT
+        "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d", // USDC
+        "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // WBNB
+        "0xa697e272a73744b343528c3bc4702f2565b2f422", // BONK
+        "0x2859e4544c4bb03966803b044a93563bd2d0dd4d", // SHIB
+        "0x25d887ce7a35172c62febfd67a1856f20faebb00", // PEPE
+        "0xfb5b838b6cfeedc2873ab27866079ac55363d37e", // FLOKI
+        "0xba2ae424d960c26247dd6c32edc70b295c744c43", // DOGE
+        "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c", // BTCB
+        "0x2170Ed0880ac9A755fd29B2688956BD959F933F8" // ETH
     ],
     "pools": [
         {
-            "stable": false, // bch-usdt
-            "tokenA": "0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf",
-            "tokenB": "0x55d398326f99059fF775485246999027B3197955"
-        },
-        {
-            "stable": false, // bch-wbnb
-            "tokenA": "0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf",
-            "tokenB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-        },
-        {
-            "stable": true, // usdt-usdc
+            "stable": true, // USDT-USDC
             "tokenA": "0x55d398326f99059fF775485246999027B3197955",
             "tokenB": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
+        },
+        {
+            "stable": false, // BCH-WBNB
+            "tokenA": "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf",
+            "tokenB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
         }
     ],
     "poolsAero": [
         {
             "stable": false,
-            "token": "0x701ACA29AE0F5d24555f1E8A6Cf007541291d110" // gob v1
-        },
-        {
-            "stable": false,
-            "token": "0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf" // bch
-        },
-        {
-            "stable": false,
-            "token": "0x55d398326f99059fF775485246999027B3197955" // usdt
+            "token": "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf" // BCH
         }
     ],
     "minter": {
         "liquid": [
+            {
+                "amount": 40000000000000000000000, // 40K
+                "wallet": "0x9C22c9Ccb39cdd4123B0f950E6acED7AF713c2fA" // dev, to be airdropped for GOBv1 holders with airdrop tool, rest burned
+            }
         ],
         "locked": [
+            {
+                "amount": 4500000000000000000000, // 4.5k
+                "wallet": "0xa32da65DF7492D05814FacC7be9f5049A826b507" // safe account, Public Goods Fund
+            }
         ]
     }
 }
